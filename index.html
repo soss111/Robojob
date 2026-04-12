@@ -1254,7 +1254,7 @@
               <span class="tip-icon">?<span class="tip-body">Average number of unplanned absence days per operator per year. EU manufacturing average is 8–14 days.</span></span>
             </label>
             <div class="field-wrap">
-              <input type="number" id="sick-days" value="10" min="0" max="365" oninput="calc()">
+              <input type="number" id="sickDays" value="10" min="0" max="365" oninput="calc()">
               <span class="unit-badge">days</span>
             </div>
           </div>
@@ -1264,7 +1264,7 @@
               <span class="tip-icon">?<span class="tip-body">Daily cost of a temp worker or agency fee to cover an absent operator. Typically €150–350/day.</span></span>
             </label>
             <div class="field-wrap">
-              <input type="number" id="temp-cost" value="220" min="0" oninput="calc()">
+              <input type="number" id="tempCost" value="220" min="0" oninput="calc()">
               <span class="unit-badge">€/day</span>
             </div>
           </div>
@@ -1274,7 +1274,7 @@
               <span class="tip-icon">?<span class="tip-body">Estimated value of lost output when a position goes uncovered — parts not made × margin. Leave 0 if fully covered by temp.</span></span>
             </label>
             <div class="field-wrap">
-              <input type="number" id="lost-production" value="500" min="0" oninput="calc()">
+              <input type="number" id="lostProduction" value="500" min="0" oninput="calc()">
               <span class="unit-badge">€/day</span>
             </div>
           </div>
@@ -1713,9 +1713,9 @@
 let chartInstance = null;
 
 const presets = {
-  robojob: {investment:95000,operators:1.5,wage:30,hours:1840,uptime:4200,productivity:12,scrap:4000,maintenance:3200,energy:1800,interest:0,depreciation:7,'sick-days':10,'temp-cost':200,'lost-production':400,recruitment:2500},
-  cmz:     {investment:140000,operators:2,wage:27,hours:1840,uptime:5500,productivity:8,scrap:6000,maintenance:5000,energy:2500,interest:2.5,depreciation:8,'sick-days':11,'temp-cost':210,'lost-production':450,recruitment:3000},
-  trumpf:  {investment:210000,operators:2.5,wage:32,hours:1840,uptime:5000,productivity:20,scrap:12000,maintenance:7000,energy:3500,interest:3,depreciation:10,'sick-days':12,'temp-cost':240,'lost-production':600,recruitment:3500}
+  robojob: {investment:95000,operators:1.5,wage:30,hours:1840,uptime:4200,productivity:12,scrap:4000,maintenance:3200,energy:1800,interest:0,depreciation:7,'sickDays':10,'tempCost':200,'lostProduction':400,recruitment:2500},
+  cmz:     {investment:140000,operators:2,wage:27,hours:1840,uptime:5500,productivity:8,scrap:6000,maintenance:5000,energy:2500,interest:2.5,depreciation:8,'sickDays':11,'tempCost':210,'lostProduction':450,recruitment:3000},
+  trumpf:  {investment:210000,operators:2.5,wage:32,hours:1840,uptime:5000,productivity:20,scrap:12000,maintenance:7000,energy:3500,interest:3,depreciation:10,'sickDays':12,'tempCost':240,'lostProduction':600,recruitment:3500}
 };
 
 function loadPreset(key) {
@@ -1739,9 +1739,9 @@ function loadPreset(key) {
   setField('energy',        p.energy);
   setField('interest',      p.interest);
   setField('depreciation',  p.depreciation);
-  setField('sick-days',     p['sick-days']);
-  setField('temp-cost',     p['temp-cost']);
-  setField('lost-production', p['lost-production']);
+  setField('sickDays',     p['sickDays']);
+  setField('tempCost',     p['tempCost']);
+  setField('lostProduction', p['lostProduction']);
   setField('recruitment',   p.recruitment);
   calc();
 }
@@ -1770,9 +1770,9 @@ function calc() {
   const annualCosts     = maintenance + energy;
   const annualInterest  = investment * (interest / 100);
 
-  const sickDays        = v('sick-days');
-  const tempCost        = v('temp-cost');
-  const lostProd        = v('lost-production');
+  const sickDays        = v('sickDays');
+  const tempCost        = v('tempCost');
+  const lostProd        = v('lostProduction');
   const recruitment     = v('recruitment');
   const absenceCost     = operators * sickDays * tempCost;
   const lostProdTotal   = operators * sickDays * lostProd;
@@ -2006,7 +2006,7 @@ function exportSummary() {
   const productivityGain = laborSavings * (productivity / 100);
   const annualCosts     = maintenance + energy;
   const annualInterest  = investment * (interest / 100);
-  const hiddenCost      = operators * v('sick-days') * v('temp-cost') + operators * v('sick-days') * v('lost-production') + operators * v('recruitment');
+  const hiddenCost      = operators * v('sickDays') * v('tempCost') + operators * v('sickDays') * v('lostProduction') + operators * v('recruitment');
   const annualNetSavings = laborSavings + productivityGain + scrap + hiddenCost - annualCosts - annualInterest;
   const paybackYears    = annualNetSavings > 0 ? investment / annualNetSavings : null;
   const roi             = annualNetSavings > 0 ? (annualNetSavings / investment) * 100 : null;
@@ -2033,9 +2033,9 @@ Generated:  ${new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long'
   Working hours/year:          ${Nf(hours)} h/yr
 
 ── MISSING OPERATOR COSTS ─────────────────────
-  Sick/absent days/yr:         ${v('sick-days')} days/operator
-  Temp cover cost:             €${Nf(v('temp-cost'))}/day
-  Lost production/day:         €${Nf(v('lost-production'))}/day
+  Sick/absent days/yr:         ${v('sickDays')} days/operator
+  Temp cover cost:             €${Nf(v('tempCost'))}/day
+  Lost production/day:         €${Nf(v('lostProduction'))}/day
   Recruitment (annualised):    €${Nf(v('recruitment'))}/operator/yr
 
 ── ANNUAL SAVINGS ─────────────────────────────
@@ -2087,91 +2087,123 @@ function updateSens() {
     maintenance: v('maintenance'),
     energy:      v('energy'),
     interest:    v('interest'),
-    sickDays:    v('sick-days'),
-    tempCost:    v('temp-cost'),
-    lostProd:    v('lost-production'),
+    sickDays:    v('sickDays'),
+    tempCost:    v('tempCost'),
+    lostProd:    v('lostProduction'),
     recruitment: v('recruitment')
   };
 
   const basePb = calcPayback(base.investment, base.operators, base.wage, base.hours, base.productivity, base.scrap, base.maintenance, base.energy, base.interest, base.sickDays, base.tempCost, base.lostProd, base.recruitment);
-  const fmtPb = pb => pb ? (pb < 1 ? Math.round(pb*12)+'m' : Math.floor(pb)+'y '+Math.round((pb%1)*12)+'m') : '∞';
+  const baseRoi = basePb ? (base.investment / basePb > 0 ? ((base.operators * base.wage * base.hours - base.maintenance - base.energy) / base.investment * 100) : 0) : 0;
+
+  const fmtPb = pb => {
+    if (!pb || !isFinite(pb)) return '∞';
+    if (pb < 1) return Math.round(pb * 12) + 'm';
+    return Math.floor(pb) + 'y ' + Math.round((pb % 1) * 12) + 'm';
+  };
   const N = n => new Intl.NumberFormat('de-DE').format(Math.round(n));
 
   const el = id => document.getElementById(id);
+
   if (el('sens-base-payback')) el('sens-base-payback').textContent = fmtPb(basePb);
-  if (el('sb-wage'))       el('sb-wage').textContent       = '€'+N(base.wage)+'/h';
-  if (el('sb-uptime'))     el('sb-uptime').textContent     = N(v('uptime'))+' h/yr';
-  if (el('sb-investment')) el('sb-investment').textContent = '€'+N(base.investment);
-  if (el('sb-maintenance'))el('sb-maintenance').textContent= '€'+N(base.maintenance)+'/yr';
+  if (el('sb-wage'))        el('sb-wage').textContent        = '€' + N(base.wage) + '/h';
+  if (el('sb-uptime'))      el('sb-uptime').textContent      = N(v('uptime')) + ' h/yr';
+  if (el('sb-investment'))  el('sb-investment').textContent  = '€' + N(base.investment);
+  if (el('sb-maintenance')) el('sb-maintenance').textContent = '€' + N(base.maintenance) + '/yr';
 
   const vars = [
-    { id: 'wage',       label: 'Hourly wage',     min: -30, max: 30,  unit: '%' },
-    { id: 'uptime',     label: 'Robot uptime',    min: -30, max: 30,  unit: '%' },
-    { id: 'investment', label: 'Investment cost', min: -20, max: 20,  unit: '%' },
-    { id: 'maintenance',label: 'Maintenance',     min: -50, max: 100, unit: '%' }
+    { id: 'wage',        label: 'Hourly wage',     rangeMin: -30, rangeMax: 30,
+      apply: (b, p) => ({ ...b, wage: base.wage * (1 + p/100) }) },
+    { id: 'uptime',      label: 'Robot uptime',    rangeMin: -30, rangeMax: 30,
+      apply: (b, p) => ({ ...b, operators: base.operators * (1 + p/100) }) },
+    { id: 'investment',  label: 'Investment cost', rangeMin: -20, rangeMax: 20,
+      apply: (b, p) => ({ ...b, investment: base.investment * (1 + p/100) }) },
+    { id: 'maintenance', label: 'Maintenance',     rangeMin: -50, rangeMax: 100,
+      apply: (b, p) => ({ ...b, maintenance: base.maintenance * (1 + p/100) }) }
   ];
 
   const tornadoData = [];
 
   vars.forEach(vr => {
-    const pct = parseInt((el('sv-'+vr.id)||{value:0}).value);
-    if (el('sr-'+vr.id)) el('sr-'+vr.id).textContent = (pct>=0?'+':'')+pct+'%';
+    const sliderEl = el('sv-' + vr.id);
+    const pct = sliderEl ? parseInt(sliderEl.value) : 0;
+    const labelEl = el('sr-' + vr.id);
+    if (labelEl) labelEl.textContent = (pct >= 0 ? '+' : '') + pct + '%';
 
-    const makeScenario = (p) => {
-      let b = {...base};
-      if (vr.id === 'wage')        b.wage        = base.wage        * (1 + p/100);
-      if (vr.id === 'uptime')      b.operators   = base.operators   * (1 + p/100);
-      if (vr.id === 'investment')  b.investment  = base.investment  * (1 + p/100);
-      if (vr.id === 'maintenance') b.maintenance = base.maintenance * (1 + p/100);
+    const run = p => {
+      const b = vr.apply(base, p);
       return calcPayback(b.investment, b.operators, b.wage, b.hours, b.productivity, b.scrap, b.maintenance, b.energy, b.interest, b.sickDays, b.tempCost, b.lostProd, b.recruitment);
     };
 
-    const scenarios = [-30, -20, -10, 0, 10, 20, 30].filter(p => p >= vr.min && p <= vr.max);
-    const maxPb = 15;
-    const barsEl = el('sb-'+vr.id+'-bars');
+    const scenarioPb = run(pct);
+    const bestPb     = run(vr.rangeMin);
+    const worstPb    = run(vr.rangeMax);
+    const delta      = (basePb && scenarioPb) ? scenarioPb - basePb : 0;
+    const isImproved = delta < 0;
+    const isWorse    = delta > 0;
+
+    const barsEl = el('sb-' + vr.id + '-bars');
     if (barsEl) {
-      barsEl.innerHTML = scenarios.map(p => {
-        const pb = makeScenario(p);
-        const pbVal = pb ? Math.min(pb, maxPb) : maxPb;
-        const pct2 = (pbVal / maxPb) * 100;
-        const isBase = p === 0;
-        const color = p < 0 ? 'rgba(78,255,160,0.55)' : p > 0 ? 'rgba(255,95,95,0.45)' : 'rgba(212,240,78,0.55)';
-        const textColor = p < 0 ? '#4effa0' : p > 0 ? '#ff5f5f' : '#d4f04e';
-        return `<div class="sens-bar-row">
-          <span class="sens-bar-label" style="color:${p===0?'var(--accent)':p<0?'var(--green)':'var(--red)'}">${p>=0?'+':''}${p}%</span>
-          <div class="sens-bar-track">
-            <div class="sens-bar-fill" style="width:${pct2.toFixed(1)}%;background:${color}">
-              <span style="color:${textColor}">${fmtPb(pb)}</span>
+      if (pct === 0) {
+        barsEl.innerHTML = `
+          <div style="padding:2px 0 8px;font-family:var(--font-mono);font-size:11px;color:var(--text3)">
+            Drag slider to see impact. Range: <span style="color:var(--green)">${fmtPb(bestPb)}</span> → base → <span style="color:var(--red)">${fmtPb(worstPb)}</span>
+          </div>`;
+      } else {
+        const diffLabel = Math.abs(delta) < 0.1 ? 'no change' :
+          (isImproved ? '−' : '+') + fmtPb(Math.abs(delta)) + ' vs base';
+        const color = isImproved ? '#4effa0' : isWorse ? '#ff5f5f' : '#d4f04e';
+        const bgColor = isImproved ? 'rgba(78,255,160,0.08)' : isWorse ? 'rgba(255,95,95,0.08)' : 'rgba(212,240,78,0.06)';
+        const arrow = isImproved ? '↓' : isWorse ? '↑' : '=';
+
+        // progress bar: show scenario pb vs worst pb range
+        const maxPb = worstPb || basePb * 2 || 10;
+        const barPct = Math.min((scenarioPb || maxPb) / maxPb * 100, 100);
+        const basePct = Math.min(basePb / maxPb * 100, 100);
+
+        barsEl.innerHTML = `
+          <div style="margin-bottom:10px;padding:10px 12px;background:${bgColor};border-radius:8px;border:1px solid ${color}22;display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <div style="font-family:var(--font-mono);font-size:18px;font-weight:500;color:${color};line-height:1">${fmtPb(scenarioPb)}</div>
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:4px">${arrow} ${diffLabel}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3)">base: ${fmtPb(basePb)}</div>
+              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3)">at ${(pct>=0?'+':'')+pct}% change</div>
             </div>
           </div>
-        </div>`;
-      }).join('');
+          <div style="position:relative;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
+            <div style="position:absolute;top:0;left:0;height:100%;width:${barPct.toFixed(1)}%;background:${color};border-radius:3px;transition:width .3s ease"></div>
+            <div style="position:absolute;top:-2px;height:10px;width:2px;background:var(--accent);border-radius:1px;left:${basePct.toFixed(1)}%;transform:translateX(-50%)"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:4px;font-family:var(--font-mono);font-size:9px;color:var(--text3)">
+            <span style="color:var(--green)">${fmtPb(bestPb)} (best)</span>
+            <span>base: ${fmtPb(basePb)}</span>
+            <span style="color:var(--red)">${fmtPb(worstPb)} (worst)</span>
+          </div>`;
+      }
     }
 
-    const worstPb = makeScenario(vr.max);
-    const bestPb  = makeScenario(vr.min);
-    const worstDelta = basePb && worstPb ? worstPb - basePb : 0;
-    const bestDelta  = basePb && bestPb  ? bestPb  - basePb : 0;
+    const worstDelta = (basePb && worstPb) ? worstPb - basePb : 0;
+    const bestDelta  = (basePb && bestPb)  ? bestPb  - basePb : 0;
     tornadoData.push({ label: vr.label, worstDelta, bestDelta });
   });
 
   const tornadoEl = el('tornado-rows');
   if (tornadoEl && basePb) {
-    const maxDelta = Math.max(...tornadoData.map(d => Math.abs(d.worstDelta)), 0.1);
-    tornadoData.sort((a,b) => Math.abs(b.worstDelta) - Math.abs(a.worstDelta));
+    const maxDelta = Math.max(...tornadoData.map(d => Math.max(Math.abs(d.worstDelta), Math.abs(d.bestDelta))), 0.1);
+    tornadoData.sort((a, b) => Math.max(Math.abs(b.worstDelta), Math.abs(b.bestDelta)) - Math.max(Math.abs(a.worstDelta), Math.abs(a.bestDelta)));
     tornadoEl.innerHTML = tornadoData.map(d => {
-      const negW = Math.min(Math.abs(Math.min(d.bestDelta, 0)) / maxDelta * 48, 48);
-      const posW = Math.min(Math.abs(Math.max(d.worstDelta, 0)) / maxDelta * 48, 48);
-      const negLabel = d.bestDelta < 0 ? '−'+fmtPb(basePb + Math.abs(d.bestDelta)) : '';
-      const posLabel = d.worstDelta > 0 ? '+'+d.worstDelta.toFixed(1)+'y' : '';
+      const negW = Math.min(Math.abs(Math.min(d.bestDelta, 0)) / maxDelta * 46, 46);
+      const posW = Math.min(Math.abs(Math.max(d.worstDelta, 0)) / maxDelta * 46, 46);
       return `<div class="tornado-row">
         <span class="tornado-label">${d.label}</span>
         <div class="tornado-center">
           <div class="tornado-axis"></div>
-          <div class="tornado-bar-neg" style="width:${negW}%"></div>
-          <div class="tornado-bar-pos" style="width:${posW}%"></div>
-          ${negW>4?`<span class="tornado-val-neg">${fmtPb(basePb+d.bestDelta)}</span>`:''}
-          ${posW>4?`<span class="tornado-val-pos">${fmtPb(basePb+d.worstDelta)}</span>`:''}
+          <div class="tornado-bar-neg" style="width:${negW.toFixed(1)}%"></div>
+          <div class="tornado-bar-pos" style="width:${posW.toFixed(1)}%"></div>
+          ${negW > 5 ? `<span class="tornado-val-neg">${fmtPb(basePb + d.bestDelta)}</span>` : ''}
+          ${posW > 5 ? `<span class="tornado-val-pos">${fmtPb(basePb + d.worstDelta)}</span>` : ''}
         </div>
       </div>`;
     }).join('');
