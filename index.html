@@ -152,8 +152,10 @@
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    overflow: hidden;
   }
+
+  .form-section:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .impact-box { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
 
   .form-section {
     padding: 16px 16px;
@@ -889,257 +891,6 @@
     line-height: 1.7;
   }
 
-  .sens-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  @media (min-width: 700px) { .sens-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
-
-  .sens-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .sens-card-header {
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  @media (min-width: 480px) { .sens-card-header { padding: 14px 20px; } }
-
-  .sens-card-title {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--text3);
-  }
-
-  .sens-base-val {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text3);
-  }
-
-  .sens-base-val span {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .sens-slider-wrap {
-    padding: 14px 14px 4px;
-  }
-
-  @media (min-width: 480px) { .sens-slider-wrap { padding: 16px 20px 6px; } }
-
-  .sens-slider-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-
-  .sens-slider-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text3);
-    width: 36px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-
-  .sens-slider-label.hi { color: var(--green); }
-  .sens-slider-label.lo { color: var(--red); }
-
-  .sens-slider-row input[type=range] {
-    flex: 1;
-    min-width: 0;
-    height: 3px;
-    accent-color: var(--accent);
-  }
-
-  .sens-result-row {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text3);
-    text-align: right;
-    width: 44px;
-    flex-shrink: 0;
-  }
-
-  .sens-bars {
-    padding: 4px 14px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  @media (min-width: 480px) { .sens-bars { padding: 6px 20px 18px; gap: 8px; } }
-
-  .sens-bar-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .sens-bar-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text3);
-    width: 44px;
-    flex-shrink: 0;
-    text-align: right;
-  }
-
-  .sens-bar-track {
-    flex: 1;
-    min-width: 0;
-    height: 22px;
-    background: var(--bg3);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sens-bar-fill {
-    position: absolute;
-    top: 0; bottom: 0; left: 0;
-    border-radius: 4px;
-    transition: width .35s ease;
-    display: flex;
-    align-items: center;
-    padding-left: 7px;
-    min-width: 40px;
-  }
-
-  .sens-bar-fill span {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
-  /* tornado chart */
-  .tornado-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    margin-top: 14px;
-  }
-
-  @media (min-width: 600px) { .tornado-card { margin-top: 20px; } }
-
-  .tornado-body {
-    padding: 14px;
-    overflow-x: auto;
-  }
-
-  @media (min-width: 480px) { .tornado-body { padding: 20px; } }
-
-  .tornado-row {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    margin-bottom: 10px;
-    height: 32px;
-  }
-
-  .tornado-label {
-    font-size: 12px;
-    color: var(--text2);
-    width: 110px;
-    flex-shrink: 0;
-    text-align: right;
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-
-  @media (min-width: 480px) { .tornado-label { width: 160px; padding-right: 12px; } }
-
-  .tornado-center {
-    flex: 1;
-    min-width: 0;
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-
-  .tornado-axis {
-    position: absolute;
-    left: 50%;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: var(--border2);
-    transform: translateX(-50%);
-  }
-
-  .tornado-bar-neg {
-    position: absolute;
-    right: 50%;
-    top: 6px; bottom: 6px;
-    border-radius: 3px 0 0 3px;
-    background: rgba(255,95,95,0.35);
-    transition: width .4s ease;
-  }
-
-  .tornado-bar-pos {
-    position: absolute;
-    left: 50%;
-    top: 6px; bottom: 6px;
-    border-radius: 0 3px 3px 0;
-    background: rgba(78,255,160,0.3);
-    transition: width .4s ease;
-  }
-
-  .tornado-val-neg {
-    position: absolute;
-    right: calc(50% + 4px);
-    font-family: var(--font-mono);
-    font-size: 9px;
-    color: var(--red);
-    white-space: nowrap;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  .tornado-val-pos {
-    position: absolute;
-    left: calc(50% + 4px);
-    font-family: var(--font-mono);
-    font-size: 9px;
-    color: var(--green);
-    white-space: nowrap;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  @media (min-width: 480px) {
-    .tornado-val-neg { font-size: 10px; }
-    .tornado-val-pos { font-size: 10px; }
-  }
-
-  .tornado-base-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text3);
-    text-align: center;
-    margin-top: 6px;
-  }
-
   /* ── PRESET CARDS ── */
   .preset-cards {
     margin-bottom: 28px;
@@ -1545,98 +1296,15 @@
     <div class="sensitivity-header">
       <div>
         <div class="eyebrow">Risk & scenario analysis</div>
-        <h2>Sensitivity <span>analysis</span></h2>
-        <p>Drag each slider to explore <strong style="color:var(--text);font-weight:500">what-if scenarios</strong> — your actual inputs above are not changed. The tornado chart shows which variable has the biggest impact on your payback period.</p>
+        <h2>What could change your <span>payback?</span></h2>
+        <p>Each row shows your best-case and worst-case payback if that variable moves. Use this to understand which assumptions matter most before committing to the investment.</p>
       </div>
-      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3);text-align:right;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;white-space:nowrap">
-        <div style="color:var(--text3);margin-bottom:4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase">Base payback</div>
+      <div id="sens-base-badge" style="font-family:var(--font-mono);text-align:right;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;white-space:nowrap;flex-shrink:0">
+        <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:4px">Base payback</div>
         <span id="sens-base-payback" style="color:var(--accent);font-size:20px;font-weight:500;font-family:var(--font-display)">—</span>
       </div>
     </div>
-
-    <div class="sens-grid">
-
-      <!-- Hourly wage slider -->
-      <div class="sens-card">
-        <div class="sens-card-header">
-          <span class="sens-card-title">Hourly wage</span>
-          <span class="sens-base-val">Base: <span id="sb-wage">€28/h</span></span>
-        </div>
-        <div class="sens-slider-wrap">
-          <div class="sens-slider-row">
-            <span class="sens-slider-label lo">−30%</span>
-            <input type="range" id="sv-wage" min="-30" max="30" value="0" step="1" oninput="updateSens()">
-            <span class="sens-slider-label hi">+30%</span>
-            <span class="sens-result-row" id="sr-wage">0%</span>
-          </div>
-        </div>
-        <div class="sens-bars" id="sb-wage-bars"></div>
-      </div>
-
-      <!-- Robot uptime slider -->
-      <div class="sens-card">
-        <div class="sens-card-header">
-          <span class="sens-card-title">Robot uptime</span>
-          <span class="sens-base-val">Base: <span id="sb-uptime">4,000 h/yr</span></span>
-        </div>
-        <div class="sens-slider-wrap">
-          <div class="sens-slider-row">
-            <span class="sens-slider-label lo">−30%</span>
-            <input type="range" id="sv-uptime" min="-30" max="30" value="0" step="1" oninput="updateSens()">
-            <span class="sens-slider-label hi">+30%</span>
-            <span class="sens-result-row" id="sr-uptime">0%</span>
-          </div>
-        </div>
-        <div class="sens-bars" id="sb-uptime-bars"></div>
-      </div>
-
-      <!-- Investment cost slider -->
-      <div class="sens-card">
-        <div class="sens-card-header">
-          <span class="sens-card-title">Investment cost</span>
-          <span class="sens-base-val">Base: <span id="sb-investment">€120,000</span></span>
-        </div>
-        <div class="sens-slider-wrap">
-          <div class="sens-slider-row">
-            <span class="sens-slider-label lo">−20%</span>
-            <input type="range" id="sv-investment" min="-20" max="20" value="0" step="1" oninput="updateSens()">
-            <span class="sens-slider-label hi">+20%</span>
-            <span class="sens-result-row" id="sr-investment">0%</span>
-          </div>
-        </div>
-        <div class="sens-bars" id="sb-investment-bars"></div>
-      </div>
-
-      <!-- Maintenance cost slider -->
-      <div class="sens-card">
-        <div class="sens-card-header">
-          <span class="sens-card-title">Maintenance cost</span>
-          <span class="sens-base-val">Base: <span id="sb-maintenance">€4,000/yr</span></span>
-        </div>
-        <div class="sens-slider-wrap">
-          <div class="sens-slider-row">
-            <span class="sens-slider-label lo">−50%</span>
-            <input type="range" id="sv-maintenance" min="-50" max="100" value="0" step="5" oninput="updateSens()">
-            <span class="sens-slider-label hi">+100%</span>
-            <span class="sens-result-row" id="sr-maintenance">0%</span>
-          </div>
-        </div>
-        <div class="sens-bars" id="sb-maintenance-bars"></div>
-      </div>
-
-    </div>
-
-    <!-- Tornado chart -->
-    <div class="tornado-card" id="tornado-card">
-      <div class="sens-card-header">
-        <span class="sens-card-title">Payback impact — tornado chart</span>
-        <span class="sens-base-val">Change in payback period vs. base case</span>
-      </div>
-      <div class="tornado-body">
-        <div id="tornado-rows"></div>
-        <div class="tornado-base-label">← worse payback &nbsp;&nbsp;&nbsp; base case &nbsp;&nbsp;&nbsp; better payback →</div>
-      </div>
-    </div>
+    <div id="sens-table-container"></div>
   </section>
 
   <!-- ── BENEFITS SECTION ── -->
@@ -2244,122 +1912,155 @@ function updateSens() {
     sickDays: s.sickDays, tempCost: s.tempCost, lostProd: s.lostProd,
     recruitment: s.recruitment
   };
-
   const basePb = s.paybackYears;
-  const baseRoi = s.roi || 0;
 
   const fmtPb = pb => {
-    if (!pb || !isFinite(pb)) return '∞';
+    if (!pb || !isFinite(pb) || pb > 30) return '> 30y';
     if (pb < 1) return Math.round(pb * 12) + 'm';
     return Math.floor(pb) + 'y ' + Math.round((pb % 1) * 12) + 'm';
   };
   const N = n => new Intl.NumberFormat('de-DE').format(Math.round(n));
 
-  const el = id => document.getElementById(id);
+  const sbp = document.getElementById('sens-base-payback');
+  if (sbp) sbp.textContent = basePb ? fmtPb(basePb) : '—';
 
-  if (el('sens-base-payback')) el('sens-base-payback').textContent = fmtPb(basePb);
-  if (el('sb-wage'))        el('sb-wage').textContent        = '€' + N(base.wage) + '/h';
-  if (el('sb-uptime'))      el('sb-uptime').textContent      = N(v('uptime')) + ' h/yr';
-  if (el('sb-investment'))  el('sb-investment').textContent  = '€' + N(base.investment);
-  if (el('sb-maintenance')) el('sb-maintenance').textContent = '€' + N(base.maintenance) + '/yr';
+  const container = document.getElementById('sens-table-container');
+  if (!container || !basePb) return;
+
+  const run = (overrides) => {
+    const b = { ...base, ...overrides };
+    return calcPayback(b.investment, b.operators, b.wage, b.hours, b.productivity,
+      b.scrap, b.maintenance, b.energy, b.interest, b.sickDays, b.tempCost, b.lostProd, b.recruitment);
+  };
 
   const vars = [
-    { id: 'wage',        label: 'Hourly wage',     rangeMin: -30, rangeMax: 30,
-      apply: (b, p) => ({ ...b, wage: base.wage * (1 + p/100) }) },
-    { id: 'uptime',      label: 'Robot uptime',    rangeMin: -30, rangeMax: 30,
-      apply: (b, p) => ({ ...b, operators: base.operators * (1 + p/100) }) },
-    { id: 'investment',  label: 'Investment cost', rangeMin: -20, rangeMax: 20,
-      apply: (b, p) => ({ ...b, investment: base.investment * (1 + p/100) }) },
-    { id: 'maintenance', label: 'Maintenance',     rangeMin: -50, rangeMax: 100,
-      apply: (b, p) => ({ ...b, maintenance: base.maintenance * (1 + p/100) }) }
+    {
+      label: 'Hourly wage',
+      unit: '€/h', baseVal: '€' + N(base.wage),
+      bestDesc:  '−30% (wages fall or shift covered cheaper)',
+      worstDesc: '+30% (wages rise, union increases, overtime)',
+      best:  run({ wage: base.wage * 0.7 }),
+      worst: run({ wage: base.wage * 1.3 })
+    },
+    {
+      label: 'Robot uptime',
+      unit: 'h/yr', baseVal: N(v('uptime')) + ' h/yr',
+      bestDesc:  '+30% (3-shift lights-out, high OEE)',
+      worstDesc: '−30% (breakdowns, single-shift only)',
+      best:  run({ operators: base.operators * 1.3 }),
+      worst: run({ operators: base.operators * 0.7 })
+    },
+    {
+      label: 'Investment cost',
+      unit: '€', baseVal: '€' + N(base.investment),
+      bestDesc:  '−20% (negotiated price, subsidy)',
+      worstDesc: '+20% (integration overruns, extras)',
+      best:  run({ investment: base.investment * 0.8 }),
+      worst: run({ investment: base.investment * 1.2 })
+    },
+    {
+      label: 'Maintenance cost',
+      unit: '€/yr', baseVal: '€' + N(base.maintenance) + '/yr',
+      bestDesc:  '−50% (service contract, low failure rate)',
+      worstDesc: '+100% (high wear, unplanned repairs)',
+      best:  run({ maintenance: base.maintenance * 0.5 }),
+      worst: run({ maintenance: base.maintenance * 2.0 })
+    },
+    {
+      label: 'Operator wage growth',
+      unit: '%/yr', baseVal: 'current wage level',
+      bestDesc:  'no wage growth (stable labour market)',
+      worstDesc: '+5%/yr for 5 years (tight labour market)',
+      best:  run({ wage: base.wage }),
+      worst: run({ wage: base.wage * 1.28 })
+    },
+    {
+      label: 'Productivity gain',
+      unit: '%', baseVal: s.productivity + '%',
+      bestDesc:  'double estimated gain (optimistic throughput)',
+      worstDesc: 'zero productivity gain (1:1 replacement only)',
+      best:  run({ productivity: s.productivity * 2 }),
+      worst: run({ productivity: 0 })
+    }
   ];
 
-  const tornadoData = [];
+  // Sort by impact range (widest swing first = most important risk)
+  vars.forEach(vr => { vr.swing = Math.abs((vr.worst || 30) - (vr.best || 0)); });
+  vars.sort((a, b) => b.swing - a.swing);
 
-  vars.forEach(vr => {
-    const sliderEl = el('sv-' + vr.id);
-    const pct = sliderEl ? parseInt(sliderEl.value) : 0;
-    const labelEl = el('sr-' + vr.id);
-    if (labelEl) labelEl.textContent = (pct >= 0 ? '+' : '') + pct + '%';
+  const maxSwing = Math.max(...vars.map(vr => vr.swing), 0.1);
 
-    const run = p => {
-      const b = vr.apply(base, p);
-      return calcPayback(b.investment, b.operators, b.wage, b.hours, b.productivity, b.scrap, b.maintenance, b.energy, b.interest, b.sickDays, b.tempCost, b.lostProd, b.recruitment);
-    };
+  const rows = vars.map(vr => {
+    const bestPb  = vr.best;
+    const worstPb = vr.worst;
+    const bestDelta  = bestPb  ? bestPb  - basePb : 0;
+    const worstDelta = worstPb ? worstPb - basePb : 0;
+    const swing = vr.swing;
+    const barWidthBest  = Math.min(Math.abs(bestDelta)  / maxSwing * 44, 44);
+    const barWidthWorst = Math.min(Math.abs(worstDelta) / maxSwing * 44, 44);
+    const impactLevel = swing < maxSwing * 0.25 ? 'low' : swing < maxSwing * 0.6 ? 'medium' : 'high';
+    const impactColor = impactLevel === 'high' ? '#ff5f5f' : impactLevel === 'medium' ? '#d4f04e' : '#4effa0';
+    const impactBg    = impactLevel === 'high' ? 'rgba(255,95,95,0.08)' : impactLevel === 'medium' ? 'rgba(212,240,78,0.06)' : 'rgba(78,255,160,0.06)';
 
-    const scenarioPb = run(pct);
-    const bestPb     = run(vr.rangeMin);
-    const worstPb    = run(vr.rangeMax);
-    const delta      = (basePb && scenarioPb) ? scenarioPb - basePb : 0;
-    const isImproved = delta < 0;
-    const isWorse    = delta > 0;
-
-    const barsEl = el('sb-' + vr.id + '-bars');
-    if (barsEl) {
-      if (pct === 0) {
-        barsEl.innerHTML = `
-          <div style="padding:2px 0 8px;font-family:var(--font-mono);font-size:11px;color:var(--text3)">
-            Drag slider to see impact. Range: <span style="color:var(--green)">${fmtPb(bestPb)}</span> → base → <span style="color:var(--red)">${fmtPb(worstPb)}</span>
-          </div>`;
-      } else {
-        const diffLabel = Math.abs(delta) < 0.1 ? 'no change' :
-          (isImproved ? '−' : '+') + fmtPb(Math.abs(delta)) + ' vs base';
-        const color = isImproved ? '#4effa0' : isWorse ? '#ff5f5f' : '#d4f04e';
-        const bgColor = isImproved ? 'rgba(78,255,160,0.08)' : isWorse ? 'rgba(255,95,95,0.08)' : 'rgba(212,240,78,0.06)';
-        const arrow = isImproved ? '↓' : isWorse ? '↑' : '=';
-
-        // progress bar: show scenario pb vs worst pb range
-        const maxPb = worstPb || basePb * 2 || 10;
-        const barPct = Math.min((scenarioPb || maxPb) / maxPb * 100, 100);
-        const basePct = Math.min(basePb / maxPb * 100, 100);
-
-        barsEl.innerHTML = `
-          <div style="margin-bottom:10px;padding:10px 12px;background:${bgColor};border-radius:8px;border:1px solid ${color}22;display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <div>
-              <div style="font-family:var(--font-mono);font-size:18px;font-weight:500;color:${color};line-height:1">${fmtPb(scenarioPb)}</div>
-              <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:4px">${arrow} ${diffLabel}</div>
-            </div>
-            <div style="text-align:right">
-              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3)">base: ${fmtPb(basePb)}</div>
-              <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3)">at ${(pct>=0?'+':'')+pct}% change</div>
-            </div>
-          </div>
-          <div style="position:relative;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
-            <div style="position:absolute;top:0;left:0;height:100%;width:${barPct.toFixed(1)}%;background:${color};border-radius:3px;transition:width .3s ease"></div>
-            <div style="position:absolute;top:-2px;height:10px;width:2px;background:var(--accent);border-radius:1px;left:${basePct.toFixed(1)}%;transform:translateX(-50%)"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;margin-top:4px;font-family:var(--font-mono);font-size:9px;color:var(--text3)">
-            <span style="color:var(--green)">${fmtPb(bestPb)} (best)</span>
-            <span>base: ${fmtPb(basePb)}</span>
-            <span style="color:var(--red)">${fmtPb(worstPb)} (worst)</span>
-          </div>`;
-      }
-    }
-
-    const worstDelta = (basePb && worstPb) ? worstPb - basePb : 0;
-    const bestDelta  = (basePb && bestPb)  ? bestPb  - basePb : 0;
-    tornadoData.push({ label: vr.label, worstDelta, bestDelta });
-  });
-
-  const tornadoEl = el('tornado-rows');
-  if (tornadoEl && basePb) {
-    const maxDelta = Math.max(...tornadoData.map(d => Math.max(Math.abs(d.worstDelta), Math.abs(d.bestDelta))), 0.1);
-    tornadoData.sort((a, b) => Math.max(Math.abs(b.worstDelta), Math.abs(b.bestDelta)) - Math.max(Math.abs(a.worstDelta), Math.abs(a.bestDelta)));
-    tornadoEl.innerHTML = tornadoData.map(d => {
-      const negW = Math.min(Math.abs(Math.min(d.bestDelta, 0)) / maxDelta * 46, 46);
-      const posW = Math.min(Math.abs(Math.max(d.worstDelta, 0)) / maxDelta * 46, 46);
-      return `<div class="tornado-row">
-        <span class="tornado-label">${d.label}</span>
-        <div class="tornado-center">
-          <div class="tornado-axis"></div>
-          <div class="tornado-bar-neg" style="width:${negW.toFixed(1)}%"></div>
-          <div class="tornado-bar-pos" style="width:${posW.toFixed(1)}%"></div>
-          ${negW > 5 ? `<span class="tornado-val-neg">${fmtPb(basePb + d.bestDelta)}</span>` : ''}
-          ${posW > 5 ? `<span class="tornado-val-pos">${fmtPb(basePb + d.worstDelta)}</span>` : ''}
+    return `
+    <div style="display:grid;grid-template-columns:1fr auto;gap:0;border-bottom:0.5px solid var(--border)">
+      <div style="padding:14px 16px 10px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span style="font-size:13px;font-weight:500;color:var(--text)">${vr.label}</span>
+          <span style="font-family:var(--font-mono);font-size:10px;padding:2px 7px;border-radius:100px;background:${impactBg};color:${impactColor}">${impactLevel} impact</span>
         </div>
-      </div>`;
-    }).join('');
-  }
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-bottom:10px">Base: ${vr.baseVal}</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--font-mono);font-size:10px;color:#4effa0;width:28px;flex-shrink:0;text-align:right">best</span>
+            <div style="flex:1;height:20px;background:var(--bg3);border-radius:3px;position:relative;overflow:hidden">
+              <div style="position:absolute;right:50%;top:3px;bottom:3px;width:${barWidthBest.toFixed(1)}%;background:rgba(78,255,160,0.4);border-radius:2px 0 0 2px"></div>
+              <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border2)"></div>
+            </div>
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:#4effa0;width:44px;flex-shrink:0">${fmtPb(bestPb)}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--accent);width:28px;flex-shrink:0;text-align:right">base</span>
+            <div style="flex:1;height:20px;background:var(--bg3);border-radius:3px;position:relative;overflow:hidden">
+              <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--accent);transform:translateX(-50%)"></div>
+            </div>
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--accent);width:44px;flex-shrink:0">${fmtPb(basePb)}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--font-mono);font-size:10px;color:#ff5f5f;width:28px;flex-shrink:0;text-align:right">risk</span>
+            <div style="flex:1;height:20px;background:var(--bg3);border-radius:3px;position:relative;overflow:hidden">
+              <div style="position:absolute;left:50%;top:3px;bottom:3px;width:${barWidthWorst.toFixed(1)}%;background:rgba(255,95,95,0.4);border-radius:0 2px 2px 0"></div>
+              <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border2)"></div>
+            </div>
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:#ff5f5f;width:44px;flex-shrink:0">${fmtPb(worstPb)}</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:14px 16px 10px;border-left:0.5px solid var(--border);min-width:160px;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="font-family:var(--font-mono);font-size:10px;color:#4effa0;margin-bottom:6px">
+          <div style="color:var(--text3);margin-bottom:2px">Best case</div>
+          ${vr.bestDesc}
+        </div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:#ff5f5f">
+          <div style="color:var(--text3);margin-bottom:2px">Worst case</div>
+          ${vr.worstDesc}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+        <span style="font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)">Payback range by variable — sorted by impact</span>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--text3)">
+          <span style="color:#4effa0">■</span> best &nbsp;
+          <span style="color:var(--accent)">■</span> base (${fmtPb(basePb)}) &nbsp;
+          <span style="color:#ff5f5f">■</span> worst
+        </span>
+      </div>
+      ${rows}
+    </div>`;
 }
 
 function filterBen(btn) {
@@ -2372,7 +2073,7 @@ function filterBen(btn) {
   });
 }
 
-calc();
+requestAnimationFrame(calc);
 </script>
 </body>
 </html>
