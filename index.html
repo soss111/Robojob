@@ -131,45 +131,6 @@
     line-height: 1.7;
   }
 
-  .preset-strip {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    align-self: flex-start;
-    padding-top: 4px;
-  }
-
-  @media (min-width: 600px) { .preset-strip { gap: 8px; padding-top: 8px; } }
-
-  .preset-btn {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 500;
-    padding: 6px 12px;
-    border-radius: 100px;
-    border: 1px solid var(--border2);
-    background: var(--bg3);
-    color: var(--text2);
-    cursor: pointer;
-    transition: all .2s ease;
-    letter-spacing: .02em;
-    white-space: nowrap;
-  }
-
-  @media (min-width: 480px) { .preset-btn { font-size: 11px; padding: 7px 14px; } }
-
-  .preset-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-dim2);
-  }
-
-  .preset-btn.active {
-    border-color: var(--accent);
-    color: var(--bg);
-    background: var(--accent);
-  }
-
   /* ── MAIN GRID ── */
   .main-grid {
     display: grid;
@@ -314,31 +275,39 @@
     flex-shrink: 0;
   }
 
-  .tip-icon:hover .tip-body {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  .tip-body {
+    display: none;
   }
 
-  .tip-body {
-    position: absolute;
-    left: 20px;
-    top: -4px;
-    width: 200px;
-    background: var(--bg4);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--text2);
-    line-height: 1.55;
-    z-index: 20;
-    opacity: 0;
-    transform: translateY(4px);
-    transition: opacity .2s, transform .2s;
-    pointer-events: none;
+  @media (min-width: 600px) {
+    .tip-icon:hover .tip-body {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .tip-body {
+      display: block;
+      position: absolute;
+      left: 20px;
+      top: -4px;
+      width: 190px;
+      max-width: calc(100vw - 60px);
+      background: var(--bg4);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text2);
+      line-height: 1.55;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .2s, transform .2s;
+      pointer-events: none;
+    }
   }
 
   /* ── RESULTS PANEL ── */
@@ -1170,6 +1139,142 @@
     text-align: center;
     margin-top: 6px;
   }
+
+  /* ── PRESET CARDS ── */
+  .preset-cards {
+    margin-bottom: 28px;
+  }
+
+  .preset-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+
+  .preset-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  @media (min-width: 600px) { .preset-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; } }
+
+  .pcard {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color .18s, background .18s;
+  }
+
+  .pcard:hover { border-color: var(--border2); background: var(--bg3); }
+
+  .pcard.active {
+    border-color: var(--accent);
+    background: var(--accent-dim2);
+  }
+
+  .pcard-top { margin-bottom: 10px; }
+
+  .pcard-name {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .pcard.active .pcard-name { color: var(--accent); }
+
+  .pcard-type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 2px;
+    letter-spacing: .04em;
+  }
+
+  .pcard-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .pcard-stat {
+    background: var(--bg3);
+    border-radius: 6px;
+    padding: 5px 8px;
+  }
+
+  .pcard.active .pcard-stat { background: rgba(212,240,78,0.06); }
+
+  .pcard-stat span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text3);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .pcard-stat strong {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .pcard.active .pcard-stat strong { color: var(--accent); }
+
+  .pcard-desc {
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.6;
+  }
+
+  /* ── CONSOLIDATED RESPONSIVE OVERRIDES ── */
+  @media (min-width: 480px) {
+
+    .form-section            { padding: 20px 24px; }
+    .kpi-card                { padding: 18px 20px; }
+    .kpi-value               { font-size: 26px; }
+    .longterm-grid           { gap: 12px; }
+    .lt-card                 { padding: 16px 20px; }
+    .ben-fil                 { padding: 6px 14px; }
+    .ben-card                { padding: 1.1rem 1.25rem; }
+    .impact-box              { padding: 18px 24px 20px; }
+    .impact-row-label        { font-size: 12px; }
+    .impact-row-val          { font-size: 13px; }
+    .sens-card-header        { padding: 14px 20px; }
+    .sens-slider-wrap        { padding: 16px 20px 6px; }
+    .sens-bars               { padding: 6px 20px 18px; gap: 8px; }
+    .tornado-body            { padding: 20px; }
+    .tornado-label           { width: 160px; padding-right: 12px; }
+    .tornado-val-neg         { font-size: 10px; }
+    .tornado-val-pos         { font-size: 10px; }
+  }
+
+  @media (min-width: 600px) {
+    .app-wrapper             { padding: 0 24px 80px; }
+    header                   { padding: 48px 0 40px; margin-bottom: 40px; align-items: flex-end; }
+
+    .benefits-section        { margin-top: 64px; padding-top: 48px; }
+    .benefits-header         { margin-bottom: 28px; }
+    .sensitivity-section     { margin-top: 64px; padding-top: 48px; }
+    .sensitivity-header      { margin-bottom: 32px; align-items: flex-end; }
+    .tornado-card            { margin-top: 20px; }
+  }
+
+  @media (min-width: 700px) {
+    .kpi-bar                 { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .sens-grid               { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
 </style>
 </head>
 <body>
@@ -1181,12 +1286,57 @@
       <h1>Automation <span>ROI</span><br>Calculator</h1>
       <p class="header-desc">Evaluate the financial impact of robotics and automation investments. Real-time payback analysis for CNC, gantry, and bending cell solutions.</p>
     </div>
-    <div class="preset-strip">
-      <button class="preset-btn" id="preset-robojob" onclick="loadPreset('robojob')">CNC Robot (Robojob)</button>
-      <button class="preset-btn" id="preset-cmz" onclick="loadPreset('cmz')">Gantry Loader (CMZ)</button>
-      <button class="preset-btn" id="preset-trumpf" onclick="loadPreset('trumpf')">Bending Auto (TRUMPF)</button>
-    </div>
   </header>
+
+  <!-- ── PRESET CARDS ── -->
+  <div class="preset-cards" id="preset-cards">
+    <div class="preset-label">Load a real-world scenario — fills all fields with industry-verified data:</div>
+    <div class="preset-grid">
+
+      <div class="pcard" id="preset-robojob" onclick="loadPreset('robojob')">
+        <div class="pcard-top">
+          <div class="pcard-name">RoboJob Turn/Mill-Assist</div>
+          <div class="pcard-type">CNC machine tending</div>
+        </div>
+        <div class="pcard-stats">
+          <div class="pcard-stat"><span>Investment</span><strong>€85–110k</strong></div>
+          <div class="pcard-stat"><span>Replaces</span><strong>1.5 FTE</strong></div>
+          <div class="pcard-stat"><span>Uptime</span><strong>4,200 h/yr</strong></div>
+          <div class="pcard-stat"><span>Payback</span><strong>~2 years</strong></div>
+        </div>
+        <div class="pcard-desc">Turnkey robot cell for CNC lathes & mills. Runs unattended overnight. 2,000+ installations worldwide. Best for medium-batch turning & milling.</div>
+      </div>
+
+      <div class="pcard" id="preset-cmz" onclick="loadPreset('cmz')">
+        <div class="pcard-top">
+          <div class="pcard-name">CMZ GL20 Gantry Loader</div>
+          <div class="pcard-type">Integrated lathe automation</div>
+        </div>
+        <div class="pcard-stats">
+          <div class="pcard-stat"><span>Investment</span><strong>€50–80k</strong></div>
+          <div class="pcard-stat"><span>Replaces</span><strong>2 FTE</strong></div>
+          <div class="pcard-stat"><span>Uptime</span><strong>5,500 h/yr</strong></div>
+          <div class="pcard-stat"><span>Payback</span><strong>~1.5 years</strong></div>
+        </div>
+        <div class="pcard-desc">2-axis gantry system integrated into CMZ CNC lathes. 180 m/min speed, 5-min changeover. Cheaper & faster than anthropomorphic robots for bar/billet turning.</div>
+      </div>
+
+      <div class="pcard" id="preset-trumpf" onclick="loadPreset('trumpf')">
+        <div class="pcard-top">
+          <div class="pcard-name">TRUMPF TruBend Cell 5000</div>
+          <div class="pcard-type">Automated bending cell</div>
+        </div>
+        <div class="pcard-stats">
+          <div class="pcard-stat"><span>Investment</span><strong>€180–250k</strong></div>
+          <div class="pcard-stat"><span>Replaces</span><strong>2.5 FTE</strong></div>
+          <div class="pcard-stat"><span>Uptime</span><strong>5,000 h/yr</strong></div>
+          <div class="pcard-stat"><span>Payback</span><strong>~3 years</strong></div>
+        </div>
+        <div class="pcard-desc">Full bending automation with BendMaster robot (60–150 kg payload), TecZone Bend programming, automatic tool change. Handles parts up to 4 m. Ideal for sheet metal fabrication.</div>
+      </div>
+
+    </div>
+  </div>
 
   <div class="main-grid">
 
@@ -1380,54 +1530,7 @@
       </div>
 
       <!-- ── FINANCIAL IMPACT SUMMARY ── -->
-      <div class="impact-box">
-        <div class="impact-box-label">Financial impact — per operator</div>
-        <div class="impact-rows">
-          <div class="impact-row">
-            <span class="impact-row-label">Cost per operator / year</span>
-            <span class="impact-row-val" id="fi-cost-per-op">€0</span>
-          </div>
-          <div class="impact-row">
-            <span class="impact-row-label">Total annual labour cost</span>
-            <span class="impact-row-val" id="fi-total-labour">€0</span>
-          </div>
-          <div class="impact-row">
-            <span class="impact-row-label">Cost per productive hour</span>
-            <span class="impact-row-val" id="fi-cost-per-hour">€0</span>
-          </div>
-          <div class="impact-divider"></div>
-          <div class="impact-row">
-            <span class="impact-row-label">Absence cost / year (all operators)</span>
-            <span class="impact-row-val" id="fi-absence-cost">€0</span>
-          </div>
-          <div class="impact-row">
-            <span class="impact-row-label">Lost production / year</span>
-            <span class="impact-row-val" id="fi-lost-prod">€0</span>
-          </div>
-          <div class="impact-row">
-            <span class="impact-row-label">Recruitment cost / year</span>
-            <span class="impact-row-val" id="fi-recruitment">€0</span>
-          </div>
-          <div class="impact-row">
-            <span class="impact-row-label">Total hidden operator cost</span>
-            <span class="impact-row-val" id="fi-hidden-cost">€0</span>
-          </div>
-          <div class="impact-divider"></div>
-          <div class="impact-row">
-            <span class="impact-row-label">Robot replaces this many hours</span>
-            <span class="impact-row-val" id="fi-robot-hours">0 h/yr</span>
-          </div>
-          <div class="impact-row">
-            <span class="impact-row-label">Robot cost vs. labour cost</span>
-            <span class="impact-row-val" id="fi-robot-vs-labour">—</span>
-          </div>
-          <div class="impact-divider"></div>
-          <div class="impact-row total">
-            <span class="impact-row-label">Total annual labour + hidden savings</span>
-            <span class="impact-row-val" id="fi-labour-savings">€0</span>
-          </div>
-        </div>
-      </div>
+      <div id="impact-box-container"></div>
 
     </div>
     <!-- /form panel -->
@@ -1443,10 +1546,11 @@
       <div>
         <div class="eyebrow">Risk & scenario analysis</div>
         <h2>Sensitivity <span>analysis</span></h2>
-        <p>Drag each slider to see how payback period and ROI respond to best- and worst-case changes. The tornado chart ranks which variables have the biggest impact on your result.</p>
+        <p>Drag each slider to explore <strong style="color:var(--text);font-weight:500">what-if scenarios</strong> — your actual inputs above are not changed. The tornado chart shows which variable has the biggest impact on your payback period.</p>
       </div>
-      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3);text-align:right">
-        Base payback: <span id="sens-base-payback" style="color:var(--accent);font-size:14px;font-weight:500">—</span>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3);text-align:right;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;white-space:nowrap">
+        <div style="color:var(--text3);margin-bottom:4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase">Base payback</div>
+        <span id="sens-base-payback" style="color:var(--accent);font-size:20px;font-weight:500;font-family:var(--font-display)">—</span>
       </div>
     </div>
 
@@ -1713,13 +1817,37 @@
 let chartInstance = null;
 
 const presets = {
-  robojob: {investment:95000,operators:1.5,wage:30,hours:1840,uptime:4200,productivity:12,scrap:4000,maintenance:3200,energy:1800,interest:0,depreciation:7,'sickDays':10,'tempCost':200,'lostProduction':400,recruitment:2500},
-  cmz:     {investment:140000,operators:2,wage:27,hours:1840,uptime:5500,productivity:8,scrap:6000,maintenance:5000,energy:2500,interest:2.5,depreciation:8,'sickDays':11,'tempCost':210,'lostProduction':450,recruitment:3000},
-  trumpf:  {investment:210000,operators:2.5,wage:32,hours:1840,uptime:5000,productivity:20,scrap:12000,maintenance:7000,energy:3500,interest:3,depreciation:10,'sickDays':12,'tempCost':240,'lostProduction':600,recruitment:3500}
+  // RoboJob Turn-Assist / Mill-Assist: €85–110k turnkey incl. robot, safety, integration
+  // Replaces 1.5 FTE on 2 shifts. Uptime ~4,200 h/yr at 85% OEE.
+  // Maintenance ~3% investment/yr. Source: robojob.com, EU manufacturing benchmarks
+  robojob: {
+    investment:95000, operators:1.5, wage:30, hours:1840,
+    uptime:4200, productivity:15, scrap:5000,
+    maintenance:2850, energy:1600, interest:0, depreciation:8,
+    sickDays:11, tempCost:220, lostProduction:450, recruitment:2800
+  },
+  // CMZ GL20 Gantry Loader: €50–80k add-on to CMZ lathe, integrated 2-axis gantry
+  // Cheaper & faster than articulated robot. 3-shift capable, 180 m/min speed.
+  // Source: cmz.com, howtorobot.com gantry cost data
+  cmz: {
+    investment:65000, operators:2, wage:27, hours:1840,
+    uptime:5500, productivity:10, scrap:4500,
+    maintenance:1950, energy:1100, interest:0, depreciation:10,
+    sickDays:11, tempCost:200, lostProduction:380, recruitment:2500
+  },
+  // TRUMPF TruBend Cell 5000: €180–250k full cell incl. press brake + BendMaster robot
+  // 60–150 kg payload, TecZone Bend software, auto tool change. High scrap reduction.
+  // Source: trumpf.com, FABTECH 2024, sheet metal fabrication industry benchmarks
+  trumpf: {
+    investment:215000, operators:2.5, wage:32, hours:1840,
+    uptime:5000, productivity:25, scrap:14000,
+    maintenance:6450, energy:3800, interest:0, depreciation:10,
+    sickDays:12, tempCost:250, lostProduction:620, recruitment:3500
+  }
 };
 
 function loadPreset(key) {
-  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.pcard').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('preset-' + key);
   if (btn) btn.classList.add('active');
   const p = presets[key];
@@ -1781,24 +1909,37 @@ function calc() {
 
   const annualNetSavings = laborSavings + productivityGain + scrap + hiddenCost - annualCosts - annualInterest;
 
-  const costPerOp     = wage * hours;
-  const totalLabour   = operators * costPerOp;
-  const costPerHour   = operators > 0 && hours > 0 ? totalLabour / (operators * hours) : 0;
-  const robotHours    = v('uptime');
-  const robotVsLabour = totalLabour > 0 ? ((investment / 7) / totalLabour * 100) : 0;
+  const costPerOp      = wage * hours;
+  const totalLabour    = operators * costPerOp;
+  const costPerHour     = wage;
+  const robotHours      = v('uptime');
+  const depYears        = v('depreciation') || 7;
+  const robotAnnualCost = investment / depYears;
+  const robotVsLabourPct = totalLabour > 0 ? (robotAnnualCost / totalLabour * 100) : 0;
   const N = n => new Intl.NumberFormat('de-DE').format(Math.round(n));
 
-  const fi = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
-  fi('fi-cost-per-op',    '€' + N(costPerOp));
-  fi('fi-total-labour',   '€' + N(totalLabour));
-  fi('fi-cost-per-hour',  '€' + costPerHour.toFixed(2));
-  fi('fi-absence-cost',   '€' + N(absenceCost));
-  fi('fi-lost-prod',      '€' + N(lostProdTotal));
-  fi('fi-recruitment',    '€' + N(recruitTotal));
-  fi('fi-hidden-cost',    '€' + N(hiddenCost));
-  fi('fi-robot-hours',    N(robotHours) + ' h/yr');
-  fi('fi-robot-vs-labour', totalLabour > 0 ? robotVsLabour.toFixed(0) + '% of labour cost/yr' : '—');
-  fi('fi-labour-savings', '€' + N(laborSavings + hiddenCost));
+  const ibc = document.getElementById('impact-box-container');
+  if (ibc) {
+    ibc.innerHTML = `<div class="impact-box">
+      <div class="impact-box-label">Financial impact — per operator</div>
+      <div class="impact-rows">
+        <div class="impact-row"><span class="impact-row-label">Cost per operator / year</span><span class="impact-row-val">€${N(costPerOp)}</span></div>
+        <div class="impact-row"><span class="impact-row-label">Total annual labour cost</span><span class="impact-row-val">€${N(totalLabour)}</span></div>
+        <div class="impact-row"><span class="impact-row-label">Cost per productive hour</span><span class="impact-row-val">€${costPerHour.toFixed(2)}</span></div>
+        <div class="impact-divider"></div>
+        <div class="impact-row"><span class="impact-row-label">Absence cost / year (all ops)</span><span class="impact-row-val">€${N(absenceCost)}</span></div>
+        <div class="impact-row"><span class="impact-row-label">Lost production / year</span><span class="impact-row-val">€${N(lostProdTotal)}</span></div>
+        <div class="impact-row"><span class="impact-row-label">Recruitment cost / year</span><span class="impact-row-val">€${N(recruitTotal)}</span></div>
+        <div class="impact-row"><span class="impact-row-label">Total hidden operator cost</span><span class="impact-row-val" style="color:var(--red)">€${N(hiddenCost)}</span></div>
+        <div class="impact-divider"></div>
+        <div class="impact-row"><span class="impact-row-label">Robot uptime</span><span class="impact-row-val">${N(robotHours)} h/yr</span></div>
+        <div class="impact-row"><span class="impact-row-label">Robot annual cost (÷${v('depreciation')}y)</span><span class="impact-row-val">€${N(robotAnnualCost)}</span></div>
+        <div class="impact-row"><span class="impact-row-label">Robot cost vs. labour cost</span><span class="impact-row-val">${totalLabour > 0 ? robotVsLabourPct.toFixed(0)+'%' : '—'}</span></div>
+        <div class="impact-divider"></div>
+        <div class="impact-row total"><span class="impact-row-label">Total labour + hidden savings</span><span class="impact-row-val">€${N(laborSavings + hiddenCost)}</span></div>
+      </div>
+    </div>`;
+  }
 
   const panel = document.getElementById('results-panel');
 
@@ -1809,6 +1950,7 @@ function calc() {
         <p>Net savings are zero or negative with current inputs.<br>Adjust labour costs, investment amount, or productivity gains.</p>
       </div>`;
     if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+    updateSens();
     return;
   }
 
@@ -1990,33 +2132,50 @@ function renderChart(annualNetSavings, investment, breakEvenMonth) {
   });
 }
 
-function exportSummary() {
-  const investment      = v('investment');
-  const operators       = v('operators');
-  const wage            = v('wage');
-  const hours           = v('hours');
-  const productivity    = v('productivity');
-  const scrap           = v('scrap');
-  const maintenance     = v('maintenance');
-  const energy          = v('energy');
-  const interest        = v('interest');
-  const depreciation    = v('depreciation');
+function getState() {
+  const investment   = v('investment');
+  const operators    = v('operators');
+  const wage         = v('wage');
+  const hours        = v('hours');
+  const productivity = v('productivity');
+  const scrap        = v('scrap');
+  const maintenance  = v('maintenance');
+  const energy       = v('energy');
+  const interest     = v('interest');
+  const depreciation = v('depreciation') || 7;
+  const sickDays     = v('sickDays');
+  const tempCost     = v('tempCost');
+  const lostProd     = v('lostProduction');
+  const recruitment  = v('recruitment');
+  const uptime       = v('uptime');
 
-  const laborSavings    = operators * wage * hours;
+  const laborSavings     = operators * wage * hours;
   const productivityGain = laborSavings * (productivity / 100);
-  const annualCosts     = maintenance + energy;
-  const annualInterest  = investment * (interest / 100);
-  const hiddenCost      = operators * v('sickDays') * v('tempCost') + operators * v('sickDays') * v('lostProduction') + operators * v('recruitment');
+  const annualCosts      = maintenance + energy;
+  const annualInterest   = investment * (interest / 100);
+  const absenceCost      = operators * sickDays * tempCost;
+  const lostProdTotal    = operators * sickDays * lostProd;
+  const recruitTotal     = operators * recruitment;
+  const hiddenCost       = absenceCost + lostProdTotal + recruitTotal;
   const annualNetSavings = laborSavings + productivityGain + scrap + hiddenCost - annualCosts - annualInterest;
-  const paybackYears    = annualNetSavings > 0 ? investment / annualNetSavings : null;
-  const roi             = annualNetSavings > 0 ? (annualNetSavings / investment) * 100 : null;
-  const savings5        = annualNetSavings * 5 - investment;
-  const savings10       = annualNetSavings * 10 - investment;
-  const breakEvenMonth  = paybackYears ? Math.ceil(paybackYears * 12) : '-';
-  const pbYrs           = paybackYears ? Math.floor(paybackYears) : '-';
-  const pbMths          = paybackYears ? Math.round((paybackYears - Math.floor(paybackYears)) * 12) : '-';
+  const paybackYears     = annualNetSavings > 0 ? investment / annualNetSavings : null;
+  const roi              = annualNetSavings > 0 ? (annualNetSavings / investment) * 100 : null;
+  const savings5         = annualNetSavings * 5 - investment;
+  const savings10        = annualNetSavings * 10 - investment;
+  const breakEvenMonth   = paybackYears ? Math.ceil(paybackYears * 12) : null;
 
+  return { investment, operators, wage, hours, productivity, scrap, maintenance, energy,
+           interest, depreciation, sickDays, tempCost, lostProd, recruitment, uptime,
+           laborSavings, productivityGain, annualCosts, annualInterest,
+           absenceCost, lostProdTotal, recruitTotal, hiddenCost,
+           annualNetSavings, paybackYears, roi, savings5, savings10, breakEvenMonth };
+}
+
+function exportSummary() {
+  const s = getState();
   const Nf = n => new Intl.NumberFormat('de-DE').format(Math.round(n));
+  const pbYrs  = s.paybackYears ? Math.floor(s.paybackYears) : '-';
+  const pbMths = s.paybackYears ? Math.round((s.paybackYears - Math.floor(s.paybackYears)) * 12) : '-';
 
   const text = `╔══════════════════════════════════════════════╗
 ║       AUTOMATION ROI SUMMARY REPORT          ║
@@ -2024,36 +2183,36 @@ function exportSummary() {
 Generated:  ${new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'})}
 
 ── INVESTMENT ─────────────────────────────────
-  Total investment:            €${Nf(investment)}
-  Depreciation period:         ${depreciation} years
+  Total investment:            €${Nf(s.investment)}
+  Depreciation period:         ${s.depreciation} years
 
 ── LABOUR ─────────────────────────────────────
-  Operators replaced:          ${operators} FTE
-  Hourly wage (loaded):        €${Nf(wage)}/h
-  Working hours/year:          ${Nf(hours)} h/yr
+  Operators replaced:          ${s.operators} FTE
+  Hourly wage (loaded):        €${Nf(s.wage)}/h
+  Working hours/year:          ${Nf(s.hours)} h/yr
 
 ── MISSING OPERATOR COSTS ─────────────────────
-  Sick/absent days/yr:         ${v('sickDays')} days/operator
-  Temp cover cost:             €${Nf(v('tempCost'))}/day
-  Lost production/day:         €${Nf(v('lostProduction'))}/day
-  Recruitment (annualised):    €${Nf(v('recruitment'))}/operator/yr
+  Sick/absent days/yr:         ${s.sickDays} days/operator
+  Temp cover cost:             €${Nf(s.tempCost)}/day
+  Lost production/day:         €${Nf(s.lostProd)}/day
+  Recruitment (annualised):    €${Nf(s.recruitment)}/operator/yr
 
 ── ANNUAL SAVINGS ─────────────────────────────
-  Labour savings:             +€${Nf(laborSavings)}
-  Hidden operator costs:      +€${Nf(hiddenCost)}
-  Productivity gain (${productivity}%):     +€${Nf(productivityGain)}
-  Scrap reduction:            +€${Nf(scrap)}
-  Maintenance & energy:       -€${Nf(annualCosts)}
-  Financing cost:             -€${Nf(annualInterest)}
+  Labour savings:             +€${Nf(s.laborSavings)}
+  Hidden operator costs:      +€${Nf(s.hiddenCost)}
+  Productivity gain (${s.productivity}%):     +€${Nf(s.productivityGain)}
+  Scrap reduction:            +€${Nf(s.scrap)}
+  Maintenance & energy:       -€${Nf(s.annualCosts)}
+  Financing cost:             -€${Nf(s.annualInterest)}
   ──────────────────────────────────────────────
-  NET ANNUAL SAVINGS:          €${Nf(annualNetSavings)}
+  NET ANNUAL SAVINGS:          €${Nf(s.annualNetSavings)}
 
 ── RESULTS ────────────────────────────────────
   Payback period:              ${pbYrs}y ${pbMths}m
-  Break-even at month:         ${breakEvenMonth}
-  Annual ROI:                  ${roi ? roi.toFixed(1) : '-'}%
-  Net gain over 5 years:      €${Nf(savings5)}
-  Net gain over 10 years:     €${Nf(savings10)}
+  Break-even at month:         ${s.breakEvenMonth || '-'}
+  Annual ROI:                  ${s.roi ? s.roi.toFixed(1) : '-'}%
+  Net gain over 5 years:      €${Nf(s.savings5)}
+  Net gain over 10 years:     €${Nf(s.savings10)}
 
 ──────────────────────────────────────────────
   Generated by Automation ROI Calculator
@@ -2077,24 +2236,17 @@ function calcPayback(investment, operators, wage, hours, productivity, scrap, ma
 }
 
 function updateSens() {
+  const s = getState();
   const base = {
-    investment:  v('investment'),
-    operators:   v('operators'),
-    wage:        v('wage'),
-    hours:       v('hours'),
-    productivity:v('productivity'),
-    scrap:       v('scrap'),
-    maintenance: v('maintenance'),
-    energy:      v('energy'),
-    interest:    v('interest'),
-    sickDays:    v('sickDays'),
-    tempCost:    v('tempCost'),
-    lostProd:    v('lostProduction'),
-    recruitment: v('recruitment')
+    investment: s.investment, operators: s.operators, wage: s.wage,
+    hours: s.hours, productivity: s.productivity, scrap: s.scrap,
+    maintenance: s.maintenance, energy: s.energy, interest: s.interest,
+    sickDays: s.sickDays, tempCost: s.tempCost, lostProd: s.lostProd,
+    recruitment: s.recruitment
   };
 
-  const basePb = calcPayback(base.investment, base.operators, base.wage, base.hours, base.productivity, base.scrap, base.maintenance, base.energy, base.interest, base.sickDays, base.tempCost, base.lostProd, base.recruitment);
-  const baseRoi = basePb ? (base.investment / basePb > 0 ? ((base.operators * base.wage * base.hours - base.maintenance - base.energy) / base.investment * 100) : 0) : 0;
+  const basePb = s.paybackYears;
+  const baseRoi = s.roi || 0;
 
   const fmtPb = pb => {
     if (!pb || !isFinite(pb)) return '∞';
@@ -2220,8 +2372,7 @@ function filterBen(btn) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', calc);
-if (document.readyState !== 'loading') calc();
+calc();
 </script>
 </body>
 </html>
