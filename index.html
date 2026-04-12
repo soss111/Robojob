@@ -66,19 +66,27 @@
     z-index: 1;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 24px 80px;
+    padding: 0 16px 60px;
+  }
+
+  @media (min-width: 600px) {
+    .app-wrapper { padding: 0 24px 80px; }
   }
 
   /* ── HEADER ── */
   header {
-    padding: 48px 0 40px;
+    padding: 28px 0 24px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 24px;
+    gap: 20px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     flex-wrap: wrap;
+  }
+
+  @media (min-width: 600px) {
+    header { padding: 48px 0 40px; margin-bottom: 40px; align-items: flex-end; }
   }
 
   .header-left {}
@@ -125,17 +133,19 @@
 
   .preset-strip {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
     align-self: flex-start;
-    padding-top: 8px;
+    padding-top: 4px;
   }
+
+  @media (min-width: 600px) { .preset-strip { gap: 8px; padding-top: 8px; } }
 
   .preset-btn {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
-    padding: 7px 14px;
+    padding: 6px 12px;
     border-radius: 100px;
     border: 1px solid var(--border2);
     background: var(--bg3);
@@ -145,6 +155,8 @@
     letter-spacing: .02em;
     white-space: nowrap;
   }
+
+  @media (min-width: 480px) { .preset-btn { font-size: 11px; padding: 7px 14px; } }
 
   .preset-btn:hover {
     border-color: var(--accent);
@@ -161,13 +173,17 @@
   /* ── MAIN GRID ── */
   .main-grid {
     display: grid;
-    grid-template-columns: 420px 1fr;
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 20px;
     align-items: start;
   }
 
-  @media (max-width: 960px) {
-    .main-grid { grid-template-columns: 1fr; }
+  @media (min-width: 960px) {
+    .main-grid { grid-template-columns: 400px 1fr; gap: 24px; }
+  }
+
+  @media (min-width: 1100px) {
+    .main-grid { grid-template-columns: 440px 1fr; }
   }
 
   /* ── FORM PANEL ── */
@@ -179,8 +195,12 @@
   }
 
   .form-section {
-    padding: 20px 24px;
+    padding: 16px 16px;
     border-bottom: 1px solid var(--border);
+  }
+
+  @media (min-width: 480px) {
+    .form-section { padding: 20px 24px; }
   }
 
   .form-section:last-child { border-bottom: none; }
@@ -207,8 +227,12 @@
 
   .field-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
+  }
+
+  @media (min-width: 380px) {
+    .field-grid { grid-template-columns: 1fr 1fr; }
   }
 
   .field-grid.single { grid-template-columns: 1fr; }
@@ -327,20 +351,24 @@
   /* KPI bar */
   .kpi-bar {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
-  @media (max-width: 700px) { .kpi-bar { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 700px) { .kpi-bar { grid-template-columns: repeat(4, 1fr); gap: 12px; } }
 
   .kpi-card {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 18px 20px;
+    padding: 14px 14px;
     position: relative;
     overflow: hidden;
     transition: border-color .2s;
+  }
+
+  @media (min-width: 480px) {
+    .kpi-card { padding: 18px 20px; }
   }
 
   .kpi-card.hero {
@@ -367,12 +395,14 @@
 
   .kpi-value {
     font-family: var(--font-display);
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text);
     letter-spacing: -0.02em;
     line-height: 1;
   }
+
+  @media (min-width: 480px) { .kpi-value { font-size: 26px; } }
 
   .kpi-card.hero .kpi-value { color: var(--accent); }
 
@@ -505,19 +535,23 @@
   .longterm-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
   }
+
+  @media (min-width: 480px) { .longterm-grid { gap: 12px; } }
 
   .lt-card {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 16px 20px;
+    padding: 14px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
   }
+
+  @media (min-width: 480px) { .lt-card { padding: 16px 20px; } }
 
   .lt-label {
     font-family: var(--font-mono);
@@ -529,7 +563,7 @@
 
   .lt-value {
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--green);
     letter-spacing: -0.02em;
@@ -613,25 +647,31 @@
 
   /* ── BENEFITS SECTION ── */
   .benefits-section {
-    margin-top: 64px;
-    padding-top: 48px;
+    margin-top: 40px;
+    padding-top: 36px;
     border-top: 1px solid var(--border);
+  }
+
+  @media (min-width: 600px) {
+    .benefits-section { margin-top: 64px; padding-top: 48px; }
   }
 
   .benefits-header {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 24px;
+    gap: 16px;
     flex-wrap: wrap;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
+
+  @media (min-width: 600px) { .benefits-header { margin-bottom: 28px; } }
 
   .benefits-title-block .eyebrow { margin-bottom: 8px; }
 
   .benefits-title-block h2 {
     font-family: var(--font-display);
-    font-size: clamp(22px, 3vw, 34px);
+    font-size: clamp(20px, 3vw, 34px);
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.15;
@@ -642,7 +682,7 @@
 
   .ben-filters {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
   }
 
@@ -650,7 +690,7 @@
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 100px;
     border: 1px solid var(--border2);
     background: transparent;
@@ -660,6 +700,8 @@
     letter-spacing: .03em;
     white-space: nowrap;
   }
+
+  @media (min-width: 480px) { .ben-fil { padding: 6px 14px; } }
 
   .ben-fil:hover { border-color: var(--border2); color: var(--text2); }
 
@@ -671,18 +713,22 @@
 
   .ben-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 14px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
+
+  @media (min-width: 500px) { .ben-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; } }
 
   .ben-card {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.1rem 1.25rem;
+    padding: 1rem 1.1rem;
     transition: border-color .2s, transform .2s;
     animation: fadeUp .35s ease both;
   }
+
+  @media (min-width: 480px) { .ben-card { padding: 1.1rem 1.25rem; } }
 
   .ben-card:hover {
     border-color: var(--border2);
@@ -752,10 +798,12 @@
   /* ── FORM IMPACT BOX ── */
   .impact-box {
     margin: 0;
-    padding: 18px 24px 20px;
+    padding: 16px 16px 18px;
     background: var(--accent-dim2);
     border-top: 1px solid rgba(212,240,78,0.15);
   }
+
+  @media (min-width: 480px) { .impact-box { padding: 18px 24px 20px; } }
 
   .impact-box-label {
     font-family: var(--font-mono);
@@ -793,18 +841,22 @@
   }
 
   .impact-row-label {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text2);
     line-height: 1.3;
   }
 
+  @media (min-width: 480px) { .impact-row-label { font-size: 12px; } }
+
   .impact-row-val {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--accent);
     white-space: nowrap;
   }
+
+  @media (min-width: 480px) { .impact-row-val { font-size: 13px; } }
 
   .impact-divider {
     height: 1px;
@@ -815,14 +867,14 @@
   .impact-row.total .impact-row-label {
     font-weight: 500;
     color: var(--text);
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .impact-row.total .impact-row-val {
-    font-size: 15px;
+    font-size: 14px;
   }
 
-  /* category accent colours (border-left on hover) */
+  /* category accent colours */
   .ben-card[data-cat="financial"]:hover { border-color: rgba(78,255,160,0.3); }
   .ben-card[data-cat="ops"]:hover       { border-color: rgba(91,156,246,0.3); }
   .ben-card[data-cat="quality"]:hover   { border-color: rgba(175,169,236,0.3); }
@@ -831,23 +883,27 @@
 
   /* ── SENSITIVITY SECTION ── */
   .sensitivity-section {
-    margin-top: 64px;
-    padding-top: 48px;
+    margin-top: 40px;
+    padding-top: 36px;
     border-top: 1px solid var(--border);
   }
 
+  @media (min-width: 600px) { .sensitivity-section { margin-top: 64px; padding-top: 48px; } }
+
   .sensitivity-header {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 24px;
+    gap: 16px;
     flex-wrap: wrap;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
+
+  @media (min-width: 600px) { .sensitivity-header { margin-bottom: 32px; align-items: flex-end; } }
 
   .sensitivity-header h2 {
     font-family: var(--font-display);
-    font-size: clamp(22px, 3vw, 34px);
+    font-size: clamp(20px, 3vw, 34px);
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.15;
@@ -866,11 +922,11 @@
 
   .sens-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  @media (max-width: 860px) { .sens-grid { grid-template-columns: 1fr; } }
+  @media (min-width: 700px) { .sens-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
 
   .sens-card {
     background: var(--bg2);
@@ -880,12 +936,16 @@
   }
 
   .sens-card-header {
-    padding: 14px 20px;
+    padding: 12px 14px;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
   }
+
+  @media (min-width: 480px) { .sens-card-header { padding: 14px 20px; } }
 
   .sens-card-title {
     font-family: var(--font-mono);
@@ -908,13 +968,15 @@
   }
 
   .sens-slider-wrap {
-    padding: 16px 20px 6px;
+    padding: 14px 14px 4px;
   }
+
+  @media (min-width: 480px) { .sens-slider-wrap { padding: 16px 20px 6px; } }
 
   .sens-slider-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 14px;
   }
 
@@ -922,7 +984,7 @@
     font-family: var(--font-mono);
     font-size: 10px;
     color: var(--text3);
-    width: 42px;
+    width: 36px;
     text-align: right;
     flex-shrink: 0;
   }
@@ -932,6 +994,7 @@
 
   .sens-slider-row input[type=range] {
     flex: 1;
+    min-width: 0;
     height: 3px;
     accent-color: var(--accent);
   }
@@ -941,35 +1004,38 @@
     font-size: 11px;
     color: var(--text3);
     text-align: right;
-    width: 56px;
+    width: 44px;
     flex-shrink: 0;
   }
 
   .sens-bars {
-    padding: 6px 20px 18px;
+    padding: 4px 14px 14px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
+
+  @media (min-width: 480px) { .sens-bars { padding: 6px 20px 18px; gap: 8px; } }
 
   .sens-bar-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .sens-bar-label {
     font-family: var(--font-mono);
     font-size: 10px;
     color: var(--text3);
-    width: 52px;
+    width: 44px;
     flex-shrink: 0;
     text-align: right;
   }
 
   .sens-bar-track {
     flex: 1;
-    height: 24px;
+    min-width: 0;
+    height: 22px;
     background: var(--bg3);
     border-radius: 4px;
     position: relative;
@@ -983,7 +1049,8 @@
     transition: width .35s ease;
     display: flex;
     align-items: center;
-    padding-left: 8px;
+    padding-left: 7px;
+    min-width: 40px;
   }
 
   .sens-bar-fill span {
@@ -993,27 +1060,23 @@
     white-space: nowrap;
   }
 
-  .sens-bar-val {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    width: 48px;
-    text-align: left;
-    flex-shrink: 0;
-  }
-
   /* tornado chart */
   .tornado-card {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 14px;
   }
 
+  @media (min-width: 600px) { .tornado-card { margin-top: 20px; } }
+
   .tornado-body {
-    padding: 20px;
+    padding: 14px;
+    overflow-x: auto;
   }
+
+  @media (min-width: 480px) { .tornado-body { padding: 20px; } }
 
   .tornado-row {
     display: flex;
@@ -1026,14 +1089,18 @@
   .tornado-label {
     font-size: 12px;
     color: var(--text2);
-    width: 160px;
+    width: 110px;
     flex-shrink: 0;
     text-align: right;
-    padding-right: 12px;
+    padding-right: 10px;
+    white-space: nowrap;
   }
+
+  @media (min-width: 480px) { .tornado-label { width: 160px; padding-right: 12px; } }
 
   .tornado-center {
     flex: 1;
+    min-width: 0;
     position: relative;
     height: 100%;
     display: flex;
@@ -1071,7 +1138,7 @@
     position: absolute;
     right: calc(50% + 4px);
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 9px;
     color: var(--red);
     white-space: nowrap;
     top: 50%;
@@ -1083,12 +1150,17 @@
     position: absolute;
     left: calc(50% + 4px);
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 9px;
     color: var(--green);
     white-space: nowrap;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
+  }
+
+  @media (min-width: 480px) {
+    .tornado-val-neg { font-size: 10px; }
+    .tornado-val-pos { font-size: 10px; }
   }
 
   .tornado-base-label {
@@ -1097,10 +1169,6 @@
     color: var(--text3);
     text-align: center;
     margin-top: 6px;
-  }
-
-  @media (max-width: 600px) {
-    .tornado-label { width: 100px; font-size: 11px; }
   }
 </style>
 </head>
@@ -1847,6 +1915,7 @@ function calc() {
     </button>`;
 
   renderChart(annualNetSavings, investment, breakEvenMonth);
+  updateSens();
 }
 
 function renderChart(annualNetSavings, investment, breakEvenMonth) {
@@ -1996,6 +2065,117 @@ Generated:  ${new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long'
   a.href = url; a.download = 'automation-roi-summary.txt';
   a.click();
   URL.revokeObjectURL(url);
+}
+
+function calcPayback(investment, operators, wage, hours, productivity, scrap, maintenance, energy, interest, sickDays, tempCost, lostProd, recruitment) {
+  const labor = operators * wage * hours;
+  const prodGain = labor * (productivity / 100);
+  const hidden = operators * sickDays * tempCost + operators * sickDays * lostProd + operators * recruitment;
+  const costs = maintenance + energy + investment * (interest / 100);
+  const net = labor + prodGain + scrap + hidden - costs;
+  return net > 0 ? investment / net : null;
+}
+
+function updateSens() {
+  const base = {
+    investment:  v('investment'),
+    operators:   v('operators'),
+    wage:        v('wage'),
+    hours:       v('hours'),
+    productivity:v('productivity'),
+    scrap:       v('scrap'),
+    maintenance: v('maintenance'),
+    energy:      v('energy'),
+    interest:    v('interest'),
+    sickDays:    v('sick-days'),
+    tempCost:    v('temp-cost'),
+    lostProd:    v('lost-production'),
+    recruitment: v('recruitment')
+  };
+
+  const basePb = calcPayback(base.investment, base.operators, base.wage, base.hours, base.productivity, base.scrap, base.maintenance, base.energy, base.interest, base.sickDays, base.tempCost, base.lostProd, base.recruitment);
+  const fmtPb = pb => pb ? (pb < 1 ? Math.round(pb*12)+'m' : Math.floor(pb)+'y '+Math.round((pb%1)*12)+'m') : '∞';
+  const N = n => new Intl.NumberFormat('de-DE').format(Math.round(n));
+
+  const el = id => document.getElementById(id);
+  if (el('sens-base-payback')) el('sens-base-payback').textContent = fmtPb(basePb);
+  if (el('sb-wage'))       el('sb-wage').textContent       = '€'+N(base.wage)+'/h';
+  if (el('sb-uptime'))     el('sb-uptime').textContent     = N(v('uptime'))+' h/yr';
+  if (el('sb-investment')) el('sb-investment').textContent = '€'+N(base.investment);
+  if (el('sb-maintenance'))el('sb-maintenance').textContent= '€'+N(base.maintenance)+'/yr';
+
+  const vars = [
+    { id: 'wage',       label: 'Hourly wage',     min: -30, max: 30,  unit: '%' },
+    { id: 'uptime',     label: 'Robot uptime',    min: -30, max: 30,  unit: '%' },
+    { id: 'investment', label: 'Investment cost', min: -20, max: 20,  unit: '%' },
+    { id: 'maintenance',label: 'Maintenance',     min: -50, max: 100, unit: '%' }
+  ];
+
+  const tornadoData = [];
+
+  vars.forEach(vr => {
+    const pct = parseInt((el('sv-'+vr.id)||{value:0}).value);
+    if (el('sr-'+vr.id)) el('sr-'+vr.id).textContent = (pct>=0?'+':'')+pct+'%';
+
+    const makeScenario = (p) => {
+      let b = {...base};
+      if (vr.id === 'wage')        b.wage        = base.wage        * (1 + p/100);
+      if (vr.id === 'uptime')      b.operators   = base.operators   * (1 + p/100);
+      if (vr.id === 'investment')  b.investment  = base.investment  * (1 + p/100);
+      if (vr.id === 'maintenance') b.maintenance = base.maintenance * (1 + p/100);
+      return calcPayback(b.investment, b.operators, b.wage, b.hours, b.productivity, b.scrap, b.maintenance, b.energy, b.interest, b.sickDays, b.tempCost, b.lostProd, b.recruitment);
+    };
+
+    const scenarios = [-30, -20, -10, 0, 10, 20, 30].filter(p => p >= vr.min && p <= vr.max);
+    const maxPb = 15;
+    const barsEl = el('sb-'+vr.id+'-bars');
+    if (barsEl) {
+      barsEl.innerHTML = scenarios.map(p => {
+        const pb = makeScenario(p);
+        const pbVal = pb ? Math.min(pb, maxPb) : maxPb;
+        const pct2 = (pbVal / maxPb) * 100;
+        const isBase = p === 0;
+        const color = p < 0 ? 'rgba(78,255,160,0.55)' : p > 0 ? 'rgba(255,95,95,0.45)' : 'rgba(212,240,78,0.55)';
+        const textColor = p < 0 ? '#4effa0' : p > 0 ? '#ff5f5f' : '#d4f04e';
+        return `<div class="sens-bar-row">
+          <span class="sens-bar-label" style="color:${p===0?'var(--accent)':p<0?'var(--green)':'var(--red)'}">${p>=0?'+':''}${p}%</span>
+          <div class="sens-bar-track">
+            <div class="sens-bar-fill" style="width:${pct2.toFixed(1)}%;background:${color}">
+              <span style="color:${textColor}">${fmtPb(pb)}</span>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    const worstPb = makeScenario(vr.max);
+    const bestPb  = makeScenario(vr.min);
+    const worstDelta = basePb && worstPb ? worstPb - basePb : 0;
+    const bestDelta  = basePb && bestPb  ? bestPb  - basePb : 0;
+    tornadoData.push({ label: vr.label, worstDelta, bestDelta });
+  });
+
+  const tornadoEl = el('tornado-rows');
+  if (tornadoEl && basePb) {
+    const maxDelta = Math.max(...tornadoData.map(d => Math.abs(d.worstDelta)), 0.1);
+    tornadoData.sort((a,b) => Math.abs(b.worstDelta) - Math.abs(a.worstDelta));
+    tornadoEl.innerHTML = tornadoData.map(d => {
+      const negW = Math.min(Math.abs(Math.min(d.bestDelta, 0)) / maxDelta * 48, 48);
+      const posW = Math.min(Math.abs(Math.max(d.worstDelta, 0)) / maxDelta * 48, 48);
+      const negLabel = d.bestDelta < 0 ? '−'+fmtPb(basePb + Math.abs(d.bestDelta)) : '';
+      const posLabel = d.worstDelta > 0 ? '+'+d.worstDelta.toFixed(1)+'y' : '';
+      return `<div class="tornado-row">
+        <span class="tornado-label">${d.label}</span>
+        <div class="tornado-center">
+          <div class="tornado-axis"></div>
+          <div class="tornado-bar-neg" style="width:${negW}%"></div>
+          <div class="tornado-bar-pos" style="width:${posW}%"></div>
+          ${negW>4?`<span class="tornado-val-neg">${fmtPb(basePb+d.bestDelta)}</span>`:''}
+          ${posW>4?`<span class="tornado-val-pos">${fmtPb(basePb+d.worstDelta)}</span>`:''}
+        </div>
+      </div>`;
+    }).join('');
+  }
 }
 
 function filterBen(btn) {
